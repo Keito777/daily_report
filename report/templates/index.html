@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% block main %}
 <h2>日報一覧</h2>
+<a href="{% url 'report:create' %}">新規作成</a>
+
 <ol>
-    {% for object.body in object_list %}
+    {% for object in object_list %}
     <li><a href="{% url 'report:detail' object.id %}">{{object.title}}</a></li>
     {% endfor %}
 </ol>
