@@ -7,4 +7,6 @@
 <div>
     {{object.body}}
 </div>
+<p><a href={% url 'report:update' object.id %}>Edit</a></p>
+<p><a href={% url 'report:delete' object.id %}>Delete</a></p>
 {% endblock %}

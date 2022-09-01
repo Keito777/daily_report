@@ -2,9 +2,15 @@
 
 {% block main %}
 <h2>新規登録</h2>
-<form metod="post">
+<form method="POST" class="post-form">{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class='btn btn-promary'>Save</button>
+  </form>
+
+<!--<form method="post">
     {% csrf_token %}
     {{form.as_p}}
     <input type='submit' value='Save' class='btn btn-promary'>
-</form>
+</form>-->
+
 {% endblock %}
