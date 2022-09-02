@@ -2,7 +2,8 @@
 {% load l10n %}
 
 {% block main %}
-<h2>日報一覧</h2>
+<h2>日報一覧（ユーザ名：{{ user.username }}）</h2>
+<a href="{% url 'accounts:login' %}"></a>
 <a href="{% url 'report:create' %}">新規作成</a>
 
 <ol>

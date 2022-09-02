@@ -5,8 +5,8 @@ from django.db import models
 from model_utils.models import TimeStampedModel
 
 class Post(TimeStampedModel):
-    # created_at = models.DateTimeField(verbose_name='作成日時', default=timezone.now)
-    # modified_at = models.DateTimeField(verbose_name='更新日時', auto_now=True)
+    # created = models.DateTimeField(auto_now_add=True)　新規作成
+    # modified = models.DateTimeField(auto_now=True) 更新
     title = models.CharField(max_length=255)
     body = models.TextField()
 

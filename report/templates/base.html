@@ -9,6 +9,13 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="/">日報記録</a>
+            <ul class='list-unstyled'>
+                {% if user.is_authenticated %}
+                <li><a href = "{% url 'accounts:logout' %}" class='text-white'>Logout</a></li>
+                {% else %}
+                <li><a href="{% url 'accounts:login'%}" class='text-white'>Login</a></li>
+                {% endif %}
+            </ul>
         </nav>
         <div class="container mt-4">
         {% block main %}
