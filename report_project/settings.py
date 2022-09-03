@@ -56,7 +56,7 @@ ROOT_URLCONF = 'report_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR/'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'report_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE':'django.db.backends.postgresql_psycopg2', # PostgreSQL使いますよ宣言
+        'NAME': 'appdb', # データベース名
+        'USER': 'yuasakeito', # データベースに接続するDBユーザー名
+        'PASSWORD': 'password1', # データベースに接続する際のDBユーザのパスワード
+        'HOST': '', # 'localhost'
+        'PORT': '', # 5432
     }
 }
 
@@ -126,4 +130,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = 'accounts:login'
 LOGIN_REDIRECT_URL = '/' # TOPページへリダイレクト
-LOGOUT_REDIRECT_URL= 'accounts:login'
+LOGOUT_REDIRECT_URL= 'accounts:logout'
