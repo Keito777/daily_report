@@ -131,3 +131,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'accounts:login'
 LOGIN_REDIRECT_URL = '/' # TOPページへリダイレクト
 LOGOUT_REDIRECT_URL= 'accounts:logout'
+
+AUTH_USER_MODEL = 'accounts.CustomUser'

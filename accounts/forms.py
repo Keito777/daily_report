@@ -1,5 +1,9 @@
 from django.contrib.auth.forms import AuthenticationForm 
 
+#signup
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm 
+from .models import CustomUser
+
 class LoginForm(AuthenticationForm):
     """ログオンフォーム"""
     def __init__(self, *args, **kwargs):
@@ -8,6 +12,37 @@ class LoginForm(AuthenticationForm):
             field.widget.attrs['class'] = 'form-control'
             field.widget.attrs['placeholder'] = field.label
 
+
+'''サインアップ用フォーム'''
+class SignupForm(UserCreationForm):
+
+    '''UserCreationFormのフィールド'''
+    # CustomUserモデルのフィールドとは別でフォームに表示される
+    # password1 = forms.~
+    # password2 = forms.~ （確認用）
+
+    class Meta:
+        model = CustomUser
+        fields = ('username', 'email')
+
+'''
+    def __init__(self, *args, **kwargs):
+
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+            field.widget.attrs['required'] = '' # 全フィールドを入力必須
+
+            # オートフォーカスとプレースホルダーの設定
+            print(field.label)
+            if field.label == '姓':
+                field.widget.attrs['autofocus'] = '' # 入力可能状態にする
+                field.widget.attrs['placeholder'] = '田中'
+            elif field.label == '名':
+                field.widget.attrs['placeholder'] = '一郎'
+            elif field.label == 'メールアドレス':
+                field.widget.attrs['placeholder'] = '***@gmail.com'
+'''
 '''
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm

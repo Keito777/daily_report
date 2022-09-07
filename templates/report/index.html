@@ -3,13 +3,11 @@
 
 {% block content %}
 <div class="container">
-    <h1>日報一覧（ユーザ名：{{ user.username }}）</h2>
-    <a href="{% url 'accounts:login' %}"></a>
+    <h1>日報一覧（ユーザ名：{{ user.username }}）</h1>
     <a href="{% url 'report:create' %}">新規作成</a>
-
     <ol>
         {% for object in object_list %}
-        <li><a href="{% url 'report:detail' object.id %}">{{object.title}}：{{object.created|localize}}</a></li>
+        <li><a href="{% url 'report:detail' object.id %}">{{object.title}}：{{object.created|date:'Y/m/d'}}</a></li> <!--{{object.created|localize}}-->
         {% endfor %}
     </ol>
 </div>
