@@ -8,7 +8,7 @@ from django.views.generic.edit import CreateView
 from .forms import LoginForm, SignupForm
 from django.urls import reverse_lazy
 
-#my_page
+# my_page
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.views.generic import DetailView
@@ -22,7 +22,7 @@ from django.views.generic.edit import UpdateView
 # password
 from .forms import LoginForm, SignupForm, UserUpdateForm, MyPasswordChangeForm
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView
-from django.urls import reverse_lazy # 遅延評価用
+from django.urls import reverse_lazy
 
 class Login(LoginView):
     """ログインページ"""
@@ -59,22 +59,24 @@ class Signup(CreateView):
 class SignupDone(TemplateView):
     template_name = 'accounts/signup_success.html'
 
-'''自分しかアクセスできないようにするMixin(My Pageのため)'''
+'''自分しかアクセスできないようにするMixin(共通化させるため)'''
+# 詳細はQiita：https://qiita.com/kkk777/items/6f467a14b0f9616a0a79
 class OnlyYouMixin(UserPassesTestMixin):
-    raise_exception = True
-
+    
     def test_func(self):
-        # 今ログインしてるユーザーのpkと、そのマイページのpkが同じなら許可
+        # 今ログインしてるユーザーのpkと、そのマイページのpkが同じならアクセスを許可
         user = self.request.user
         return user.pk == self.kwargs['pk']
+
+    # test_func関数がFalseの場合のリダイレクト先を指定
+    def handle_no_permission(self):
+        return redirect("report:index")
 
 
 '''マイページ'''
 class MyPage(OnlyYouMixin, DetailView):
     model = CustomUser
     template_name = 'accounts/my_page.html'
-    # モデル名小文字(user)でモデルインスタンスがテンプレートファイルに渡される
-
 
 '''ユーザー登録情報の更新'''
 class UserUpdate(OnlyYouMixin, UpdateView):
