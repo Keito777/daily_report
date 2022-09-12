@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+import dotenv
+
+dotenv.load_dotenv() # .env ファイルを読み込む
+SECRET_KEY = os.getenv('SECREST_KEY') # .env内の環境変数を取得
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +25,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-s9skns!4+qfld*5janc4gnx0kdg^@jxo+$!0rr%zsly&&e)_kp'
+#SECRET_KEY = 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1', 'Herokuにデプロイしたアプリのドメイン']
 
 
 # Application definition
@@ -49,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'report_project.urls'
@@ -122,6 +128,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+# 以下2つの環境変数を追加
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -133,3 +144,9 @@ LOGIN_REDIRECT_URL = '/' # TOPページへリダイレクト
 LOGOUT_REDIRECT_URL= 'accounts:logout'
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
+
+DEBUG = False # Falseに修正
+
+if not DEBUG:
+    import django_heroku
+    django_heroku.settings(locals())
