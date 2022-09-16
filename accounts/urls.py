@@ -19,8 +19,4 @@ urlpatterns = [
     # password
     path('password_change/', PasswordChange.as_view(), name='password_change'), # パスワード変更
     path('password_change_done/', PasswordChangeDone.as_view(), name='password_change_done'), # パスワード変更完了
-    #path('signup/', account_views.SignUp.as_view(), name='signup'),
-    #path('accounts/', account_views.AccountList.as_view(), name='account_list'),
-    #path('accounts/edit/<int:pk>', account_views.AccountEdit.as_view(), name='account_edit'),
-    #path('accounts/delete/<int:pk>', account_views.account_delete, name='account_delete')
 ]
