@@ -146,8 +146,8 @@ LOGOUT_REDIRECT_URL= 'accounts:logout'
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
-#DEBUG = False # Falseに修正
-DEBUG = True
+DEBUG = False # デプロイ時、Falseに修正
+#DEBUG = True
 if not DEBUG:
     import django_heroku
     django_heroku.settings(locals())
