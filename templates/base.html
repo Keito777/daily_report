@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="ja">
   <head>
@@ -11,7 +12,17 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>ユーザー登録・更新</title>
+    <!-- タイトル -->
+    {% block title %}<title>日報管理ツール</title>{% endblock %}
+
+        <!-- for admin widgets -->
+        <!-- <link rel="stylesheet" type="text/css" href="{% static 'admin/css/base.css' %}"/> -->
+        <link rel="stylesheet" type="text/css" href="{% static 'admin/css/forms.css' %}"/>
+        <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+        
+        <script type="text/javascript" src="{% static 'admin/js/core.js' %}"></script>
+        <script type="text/javascript" src="{% static 'admin/js/admin/RelatedObjectLookups.js' %}"></script>
+        {{ form.media }}
   </head>
   <body>
     <!-- ナビバー -->

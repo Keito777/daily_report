@@ -8,6 +8,11 @@ from django.shortcuts import redirect
 from .models import Post
 from accounts.models import CustomUser
 
+from django.db.models import Q # get_queryset()用に追加
+from django.contrib import messages #　検索結果のメッセージのため追加
+
+from .forms import CustomForm # 検索フォーム
+
 
 class OwnerOnly(UserPassesTestMixin):
 
@@ -23,17 +28,25 @@ class OwnerOnly(UserPassesTestMixin):
 
 class Index(LoginRequiredMixin, ListView):
     template_name = 'report/index.html'
+    paginate_by = 10
     #model = Post
     #ordering = 'created' # 新規作成順　'-createdで降順'
 
     def get_queryset(self):
         current_user = self.request.user.username # ログイン中のユーザ名を取得（CustomUserモデルのusernameレコードの値を取得）
         user_data = CustomUser.objects.get(username=current_user) # QuerySet(条件が一致するレコードを全て取得)
-        if user_data:
-            queryset = Post.objects.filter(user_name=user_data).all() # QuerySet（一致するレコード全て取得）
-            queryset = queryset.order_by("created")
-        return queryset
+        #if user_data:
+        queryset = Post.objects.filter(user_name=user_data).all() # QuerySet（一致するレコード全て取得）
+        queryset = queryset.order_by("created")
 
+        # 検索フォーム
+        query = self.request.GET.get('query', '') # クエリストリング(queryの値)取得
+        if query:
+            queryset = queryset.filter(
+            Q(title__icontains=query) | Q(body__icontains=query)
+            )
+        messages.add_message(self.request, messages.INFO, query)
+        return queryset
 
 class Detail(LoginRequiredMixin, OwnerOnly, DetailView):
     template_name = 'report/detaile.html'
@@ -42,8 +55,9 @@ class Detail(LoginRequiredMixin, OwnerOnly, DetailView):
 
 class Create(LoginRequiredMixin, CreateView):
     template_name = 'report/create.html'
-    model = Post # form_classは記述が多くなるのでmodelを使用
-    fields = ['title', 'body']
+    form_class = CustomForm
+    #model = Post # form_classは記述が多くなるのでmodelを使用
+    #fields = ['title', 'body']
 
     def form_valid(self, form):
       '''
