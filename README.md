@@ -30,8 +30,15 @@
 ### ユーザー専用画面
 ![image](https://user-images.githubusercontent.com/65697369/194269027-67ce7aec-10fc-4ec9-b0cb-6f966c0010d8.png)
 
+## コード利用時の注意点
+- セキュリティの観点からsettings.py内のSECRET_KEY環境変数の値をローカルの別のファイルで管理しています。
+- そのため、git cloneでコードを利用する際は、Djangoのshell上でget_random_secret_key()関数を実行し、セキュリティキーを取得して、その値をSECRET_KEYに設定してからアプリを利用してください。
+
 ## 今後の予定
 - メールを用いた認証機能
 - カレンダーを用いた日報作成日の入力機能（Heroku環境ではカレンダーが表示されない問題）
 - 年月別に日報を管理する機能
 - カレンダーを用いた年月の検索機能
+
+# Lisence
+This project is licensed under the MIT License, see the LICENSE file for details
