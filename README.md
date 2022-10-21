@@ -33,9 +33,9 @@
 - 詳細は、[requirements.txt](https://github.com/Keito777/daily_report/blob/master/requirements.txt)を確認
 
 ## テストユーザー（確認用）
-- user : test
-- mail : 空白
-- password : testuser2000 
+- user：test
+- mail：空白
+- password：testuser2000 
 - アプリURL：https://work-daily-report.herokuapp.com/
 
 ## コード利用時の注意点
