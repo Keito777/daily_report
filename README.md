@@ -36,6 +36,7 @@
 - user : test
 - mail : 空白
 - password : testuser2000 
+- アプリURL：https://work-daily-report.herokuapp.com/
 
 ## コード利用時の注意点
 - セキュリティの観点からsettings.py内のSECRET_KEY環境変数の値をリポジトリ外（ローカルファイル）で管理しています。
