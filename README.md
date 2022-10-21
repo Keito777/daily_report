@@ -31,7 +31,7 @@
 ![image](https://user-images.githubusercontent.com/65697369/194269027-67ce7aec-10fc-4ec9-b0cb-6f966c0010d8.png)
 
 ## コード利用時の注意点
-- セキュリティの観点からsettings.py内のSECRET_KEY環境変数の値をローカルの別のファイルで管理しています。
+- セキュリティの観点からsettings.py内のSECRET_KEY環境変数の値をリポジトリ外（ローカルファイル）で管理しています。
 - そのため、git cloneでコードを利用する際は、Djangoのshell上でget_random_secret_key()関数を実行し、セキュリティキーを取得して、その値をSECRET_KEYに設定してからアプリを利用してください。
 
 ## 今後の予定
