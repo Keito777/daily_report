@@ -1,4 +1,8 @@
-# 日報管理ツール
+# [日報管理ツール](https://work-daily-report.herokuapp.com/)
+## 作成目的
+- 日々の業務内容を記録するため
+- 月次報告の際、業務時間や内容を効率的に資料に記入するため
+
 ## 主な機能
 - ユーザー登録、認証（サインアップ、ログイン、ログアウト機能）
 - 日報の新規作成、編集、削除
@@ -6,14 +10,6 @@
 - ユーザー名、メールアドレス、パスワードの変更（パスワードを忘れた際に、再設定できる）
 - 日報検索機能
 - ページネーション機能（件ごと）
-
-## テストユーザー（確認用）
-- user : test
-- mail : 空白
-- password : testuser2000 
-
-## デプロイ
-- Heroku : https://work-daily-report.herokuapp.com/
 
 ## フロント
 
@@ -29,6 +25,17 @@
 
 ### ユーザー専用画面
 ![image](https://user-images.githubusercontent.com/65697369/194269027-67ce7aec-10fc-4ec9-b0cb-6f966c0010d8.png)
+
+## デプロイ環境
+- Heroku
+
+## ライブラリ
+- 詳細は、[requirements.txt](https://github.com/Keito777/daily_report/blob/master/requirements.txt)を確認
+
+## テストユーザー（確認用）
+- user : test
+- mail : 空白
+- password : testuser2000 
 
 ## コード利用時の注意点
 - セキュリティの観点からsettings.py内のSECRET_KEY環境変数の値をリポジトリ外（ローカルファイル）で管理しています。
