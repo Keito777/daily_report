@@ -86,7 +86,7 @@ DATABASES = {
     'default': {
         'ENGINE':'django.db.backends.postgresql_psycopg2', # PostgreSQL使いますよ宣言
         'NAME': 'appdb', # データベース名
-        'USER': 'yuasakeito', # データベースに接続するDBユーザー名
+        'USER': 'postgres', # データベースに接続するDBユーザー名
         'PASSWORD': 'password1', # データベースに接続する際のDBユーザのパスワード
         'HOST': '', # 'localhost'
         'PORT': '', # 5432
