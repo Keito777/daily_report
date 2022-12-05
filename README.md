@@ -77,9 +77,10 @@
 ![delete2](https://user-images.githubusercontent.com/65697369/197145327-64c38248-104c-4082-a158-087ad4d81cc3.png)
 
 
-## コード利用時の注意点
+## コード利用時の注意点(ローカル)
 - セキュリティの観点からsettings.py内のSECRET_KEY環境変数の値をリポジトリ外（ローカルファイル）で管理しています。
 - そのため、git cloneでコードを利用する際は、Djangoのshell上でget_random_secret_key()関数を実行し、セキュリティキーを取得して、その値をSECRET_KEYに設定してからアプリを利用してください。
+- デプロイ環境では、Heroku上でSECRET_KEY環境変数の値を設定しています。
 
 ## 今後の予定
 - メールを用いたユーザー認証機能
